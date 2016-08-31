@@ -317,3 +317,22 @@ function delId($id) { //delete from db using id
 	$db->delete($cond);
 }
 
+function getCash($id) {
+	$ucol = array('cash');
+	$opt = "WHERE `id`='".$id."'";
+	$len = count($ucol);
+	$db = dbConf('account');
+	$db->setCol($ucol, $len);
+	$db->setColLen($len);
+	$sth = $db->select($opt);
+	$arr = $sth->fetchAll(PDO::FETCH_ASSOC);
+	// print_r($arr);
+	return $arr;
+}
+
+function editCash($id, $val) {
+	$val = "`cash`=".$val;
+	$cond = "`id`=".$id;
+	$db = dbConf('account');
+	$db->update($val, $cond);
+}
