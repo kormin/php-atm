@@ -31,6 +31,13 @@ ifsesh();
 		<h1><?=TITLE;?></h1>
 	</header>
 	<section id="cont" style="text-align: center;">
+		<div id="f0">
+			<a href="register.php">Register</a>
+		</div>
+		<br>
+		<div id="f1">
+			<a href="login.php">Login</a>
+		</div>
 	</section>
 </body>
 </html>
