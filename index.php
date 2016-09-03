@@ -1,4 +1,11 @@
 <?php
+/**
+* Author github: https://github.com/kormin
+* Project: ATM
+* Description: index
+* Date Created: August 2016
+* Additional Comments: 
+*/
 
 define('TITLE', 'Homepage');
 require_once('common.php');
