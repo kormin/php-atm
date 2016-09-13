@@ -2,8 +2,9 @@
 /**
 * Author github: https://github.com/kormin
 * Project: ATM
-* Description: index
 * Date Created: August 2016
+* File: index
+* Description: First page to open
 * Additional Comments: 
 */
 
