@@ -4,10 +4,6 @@ define('TITLE', 'Add Account');
 
 require_once('dbUtil.php');
 require_once('common.php');
-ifsesh();
-
-$error = '';
-
 
 ?>
 <!DOCTYPE html>
@@ -36,6 +32,33 @@ $error = '';
 		<h1><?=TITLE;?></h1>
 	</header>
 	<section id="cont" style="text-align: center;">
+		<?php if($error!=''): ?>
+			<p><?=$error;?></p>
+			<a href="register.php">Refresh</a>
+			<br>
+			<br>
+			<a href="index.php">Homepage</a>
+		<?php else: ?>
+			<form action="register.php" method="POST">
+				<div id="f0">
+					<label for="accnum">Account Number: </label>
+					<input type="number" min="0" id="accnum" name="accnum" required >
+				</div>
+				<div id="f1">
+					<label for="accname">Account Name: </label>
+					<input type="text" min="0" id="accname" name="accname" required >
+				</div>
+				<div id="f2">
+					<label for="pinnum">PIN Number: </label>
+					<input type="password" min="0" id="pinnum" name="pinnum" required >
+				</div>
+				<div id="f3">
+					<label for="conpin">Confirm PIN: </label>
+					<input type="password" min="0" id="conpin" name="conpin" required >
+				</div>
+				<input type="submit" name="newacc" value="Add Account" >
+			</form>
+		<?php endif; ?>
 	</section>
 </body>
 </html>
