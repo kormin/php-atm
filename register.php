@@ -4,6 +4,51 @@ define('TITLE', 'Add Account');
 
 require_once('dbUtil.php');
 require_once('common.php');
+ifsesh();
+
+$error = '';
+
+if (isset($_POST['newacc'])) {
+	if ($_POST['pinnum']==$_POST['conpin']) {
+		$id = userCheck($_POST['accnum']);
+		if ($id<0) {
+			addAcct();
+			header('Location: index.php');
+		}else{
+			$error = "Error. User already exists. Please try again.";
+		}
+	}else{
+		$error='PIN Number and Confirm PIN Number entries not the same.';
+	}
+}
+
+function userCheck($uname) {
+	$ucol = array('id', 'acctnum');
+	$opt = "WHERE `acctnum`='".$uname."'";
+	$len = count($ucol);
+	$db = dbConf('account');
+	$db->setCol($ucol, $len);
+	$db->setColLen($len);
+	$sth = $db->select($opt);
+	$arr = $sth->fetchAll(PDO::FETCH_ASSOC);
+	foreach ($arr as $i => $v) {
+		if($i=='id') return $v['id'];
+	}
+	return -1;
+}
+
+function addAcct() {
+	$regsuser = array($_POST['accnum'], $_POST['accname'], $_POST['pinnum'], 500);
+	$regsusercol = array('acctnum', 'acctname', 'pin', 'cash');
+	$len = count($regsusercol);
+	$db = dbConf('account');
+	// $user = '';
+	// $user = buildStr($regsuser);
+	// print_r($user);
+	$db->setCol($regsusercol, $len); // prepares columns and columns placeholder
+	$db->setColLen($len); // sets col len
+	$db->insert($regsuser, $regsusercol, $len);
+}
 
 ?>
 <!DOCTYPE html>
