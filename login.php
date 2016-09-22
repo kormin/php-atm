@@ -33,6 +33,25 @@ require_once('common.php');
 		<h1><?=TITLE;?></h1>
 	</header>
 	<section id="cont" style="text-align: center;">
+		<?php if($error!=''): ?>
+			<p><?=$error;?></p>
+			<a href="login.php">Refresh</a>
+			<br>
+			<br>
+			<a href="register.php">Create Account</a>
+		<?php else: ?>
+			<form action="login.php" method="POST">
+				<div id="f0">
+					<label for="accnum">Account Number: </label>
+					<input type="number" min="0" id="accnum" name="accnum" required >
+				</div>
+				<div id="f1">
+					<label for="pinnum">PIN Number: </label>
+					<input type="password" min="0" id="pinnum" name="pinnum" required >
+				</div>
+				<input type="submit" name="log" value="Log In" >
+			</form>
+		<?php endif; ?>
 	</section>
 </body>
 </html>
