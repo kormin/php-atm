@@ -1,4 +1,12 @@
 <?php
+/**
+* Author github: https://github.com/kormin
+* Project: ATM
+* Date Created: August 2016
+* File: Register
+* Description: Registration form
+* Additional Comments: 
+*/
 
 define('TITLE', 'Add Account');
 
