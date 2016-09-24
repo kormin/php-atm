@@ -5,6 +5,38 @@ define('TITLE', 'Log In');
 
 require_once('dbUtil.php');
 require_once('common.php');
+ifsesh();
+
+$error = '';
+
+if (isset($_POST['log'])) {
+	$uname = $_POST['accnum'];
+	$passw = $_POST['pinnum'];
+	$id = acctCheck($uname, $passw);
+	if($id>0){
+		session_start();
+		$_SESSION['id'] = $id;
+		header('Location: home.php');
+	}else{
+		$error = 'Invalid Login information. Please try again or create an account.';
+	}
+}
+
+function acctCheck($uname, $passw) {
+	$i=0;
+	$ucol = array('id', 'acctnum', 'pin');
+	$opt = "WHERE `acctnum`='".$uname."' AND `pin`='".$passw."'";
+	$len = count($ucol);
+	$db = dbConf('account');
+	$db->setCol($ucol, $len);
+	$db->setColLen($len);
+	$sth = $db->select($opt);
+	$arr = $sth->fetchAll(PDO::FETCH_ASSOC);
+	foreach ($arr as $i => $v) {
+		if($i=='id') return $v['id'];
+	}
+	return -1;
+}
 
 ?>
 <!DOCTYPE html>
