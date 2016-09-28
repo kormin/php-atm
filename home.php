@@ -30,6 +30,27 @@ require_once('dbUtil.php');
 		<h3 style="">Welcome <?=$name;?>!</h3>
 	</header>
 	<section id="cont">
+		<?php if($error!=''): ?>
+			<p><?=$error;?></p>
+			<a href="login.php">Login Here</a>
+		<?php else: ?>
+			<nav id="options">
+				<ul>
+					<li>
+						<a href="balance.php"  >Balance Inquiry</a>
+					</li>
+					<li>
+						<a href="deposit.php"  >Deposit</a>
+					</li>
+					<li>
+						<a href="withdraw.php"  >Withdraw</a>
+					</li>
+					<li>
+						<a href="logout.php"  >Exit</a>
+					</li>
+				</ul>
+			</nav>
+		<?php endif; ?>
 	</section>
 </body>
 </html>
