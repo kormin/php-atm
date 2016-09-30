@@ -1,4 +1,12 @@
 <?php
+/**
+* Author github: https://github.com/kormin
+* Project: ATM
+* Date Created: August 2016
+* File: Home
+* Description: Homepage after login
+* Additional Comments: 
+*/
 
 define('TITLE', 'ATM Home');
 require_once('dbUtil.php');
