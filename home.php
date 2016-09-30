@@ -2,6 +2,41 @@
 
 define('TITLE', 'ATM Home');
 require_once('dbUtil.php');
+
+$error = '';
+$name = '';
+
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+
+if (!empty($_SESSION)) {
+	$id = $_SESSION['id'];
+	$info = getInfo($id);
+	foreach ($info[0] as $k => $v) {
+		switch ($k) {
+			case 'acctname': $name = $_SESSION['accname'] = $v; break;
+			// case 'cash': $_SESSION['cash'] = $v; break;
+			default: echo 'An error has occurred. We apologize. Please try again later.'; break;
+		}
+	}
+}else{
+	$error = 'Please login so you can view your profile. You can also create an account by registering.';
+}
+
+function getInfo($id) {
+	$ucol = array('acctname');
+	$opt = "WHERE `id`='".$id."'";
+	$len = count($ucol);
+	$db = dbConf('account');
+	$db->setCol($ucol, $len);
+	$db->setColLen($len);
+	$sth = $db->select($opt);
+	$arr = $sth->fetchAll(PDO::FETCH_ASSOC);
+	// print_r($arr);
+	return $arr;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
