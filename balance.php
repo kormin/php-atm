@@ -29,6 +29,14 @@ require_once('dbUtil.php');
 		<h1><?=TITLE;?></h1>
 	</header>
 	<section id="cont" style="text-align: center;">
+		<?php if($error!=''): ?>
+			<p><?=$error;?></p>
+			<a href="login.php">Login Here</a>
+		<?php else: ?>
+			<h3 style="">Welcome <?=$_SESSION['accname'];?>!</h3>
+			<p>Your balance is: <?=$cash;?></p>
+			<a href="home.php">&lt;&lt;BACK</a>
+		<?php endif; ?>
 	</section>
 </body>
 </html>
