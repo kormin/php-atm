@@ -2,6 +2,21 @@
 
 define('TITLE', 'Balance Inquiry');
 require_once('dbUtil.php');
+$error = '';
+$cash = '';
+
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+
+if (!empty($_SESSION)) {
+	$arr = getCash($_SESSION['id']);
+	// print_r($arr);
+	$cash = $arr[0]['cash'];
+}else{
+	$error = 'Please login so you can view your profile. You can also create an account by registering.';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
