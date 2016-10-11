@@ -1,4 +1,12 @@
 <?php
+/**
+* Author github: https://github.com/kormin
+* Project: ATM
+* Date Created: August 2016
+* File: Balance
+* Description: Balance Inquiry
+* Additional Comments: 
+*/
 
 define('TITLE', 'Balance Inquiry');
 require_once('dbUtil.php');
